@@ -1,0 +1,236 @@
+\documentclass{beamer}
+%Information to be included in the title page:
+\title[ANTIQUE Seminar]{ANTIQUE Seminar - Relational Symbolic Execution}
+\author{Ignacio Tiraboschi}
+\institute[INRIA / ENS]{INRIA Paris - ENS Paris}
+\date{2022}
+\usetheme{CambridgeUS}
+\setbeamertemplate{page number in head/foot}[appendixframenumber]
+
+% if then else in macros
+\usepackage{xparse}
+% inference rules
+\usepackage{mathpartir}
+% math fonts
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{latexsym}
+%
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[round,semicolon,authoryear,sort]{natbib}
+\bibliographystyle{unsrtnat}
+%
+\RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
+\renewcommand{\figurename}{Listing}
+%
+\newcommand{\TODO}[1]{\noindent \textcolor{red}{\textsf{TODO: #1}}}
+%
+\input{macros.tex}
+%
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+  \frametitle{Outline}
+  \begin{enumerate}
+    \item Symbolic execution.
+    \begin{itemize}
+      \item What is Symbolic execution?
+      \item Example.
+      \item Pros and cons.
+    \end{itemize}
+    \item Hyperproperties.
+    \begin{itemize}
+      \item Noninterference.
+    \end{itemize}
+    \item Symbolic execution for noninterference: \emph{Relational symbolic execution}.
+    \begin{itemize}
+      \item Example.
+      \item How to achieve soundness?
+    \end{itemize}
+    \item 
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Symbolic execution}
+  \emph{Symbolic execution} executes the program over \textbf{symbolic variables and values} which
+  \textbf{represent possible concrete values}.
+  
+  \pause
+  \vspace{1em}
+  Symbolic execution is very expressive and precise, and this is particularly good to find
+  security vulnerabilities.
+  
+  \pause
+  \vspace{1em}
+  It is only \emph{sound up to a bound}. We can only unroll loops a limited amount of times.
+
+  \pause
+  \vspace{1em}
+  It relies on an off-the-shelf SMT solver to handle satisfiabilty queries, which can eventually
+  be a problem when queries are too complicated. Also, if not careful, there is
+  \textbf{path explosion} \citep{DBLP:journals/cacm/CadarS13}.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Symbolic execution}
+  More precisely, symbolic state is a pair $(\rho,\pi)$ where $\rho$ is the symbolic mapping and
+  $\pi$ is the symbolic path.
+
+  \vspace{1em}
+  A regular safety property could be ``the program never divides by zero'' .
+  To check this we need to see that:
+  \begin{center}
+    In all possible traces, no trace ever divides by zero.
+  \end{center}
+
+  \vspace{1em}
+  Let us see an example to understand how we can use symbolic execution for verification.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Example}
+  \begin{figure}[htp]
+    \centering
+    \begin{minted}{c}
+int x, y;
+if (x != 0) {
+  y = y / x;
+}
+    \end{minted}
+  \end{figure}
+  \begin{figure}
+    \begin{tikzpicture}
+      \node[scale=0.8] { $\rho = \{ \textsf{x} \rightarrow x_0\ ;\ \textsf{y} \rightarrow y_0 \} \;
+              \pi = \text{True}$ } [sibling distance = 5.5cm]
+        child [red] {
+          node [scale=0.8] {
+            $\rho = \{ \textsf{x} \rightarrow x_0\ ;\ \textsf{y} \rightarrow y_0 \} \;
+            \pi = \{ x_0 = 0 \}$
+            } edge from parent node [scale=0.8, left, brown] {\texttt{if-false}}}
+        child [blue] {
+          node [scale=0.8] {
+            $\rho = \{ \textsf{x} \rightarrow x_0\ ;\ \textsf{y} \rightarrow y_0 \} \;
+            \pi = \{ x_0 \not = 0 \}$
+            }
+            child {node [scale=0.8] {
+              $\rho = \{ \textsf{x} \rightarrow x_0\ ;\ \textsf{y} \rightarrow y_0 / x_0 \} \;
+              \pi = \{ x_0 \not = 0 \}$
+              } edge from parent node [scale=0.8, right, brown] {\texttt{assign}}}
+            edge from parent node [scale=0.8, right, brown] {\texttt{if-true}}};
+    \end{tikzpicture}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Symbolic execution}
+  The previous example works great... \pause but what if we had loops?
+  
+  \vspace{1em}
+  The usual method to deal with loops is to unfold up to certain bound, losing capability to actually
+  verify a property.
+  But this still allows finding vulnerabilities in the program.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Noninterference}
+  The previous property depends only on individual traces.
+
+  \vspace{1em}
+  A \textbf{2-safety} \citep{Clarkson2008} property is a safety property over sets of traces.
+  One 2-safety property of interest is \emph{noninterference}.
+
+  \pause
+  \vspace{1em}
+  Noninterference is a confidentiality policy that stipulates commands executed on behalf of
+  users holding \textbf{high clearances have no effect} on system behavior observed by users holding
+  \textbf{low clearances}.
+
+  \pause
+  \begin{center}
+    For any two traces initially agreeing on public values, if the traces end, they agree on its
+    public values.
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Relational symbolic execution}
+  In \emph{relational symbolic execution} \citep*{DBLP:journals/corr/abs-1711-08349} the authors
+  propose a framework for verification of properties such as noninterference.
+  
+  \pause
+  \vspace{1em}
+  In relational symbolic execution we have that each variable is mapped to either one or two
+  symbolic expressions.
+  \[
+    \textsf{x} \rightarrow \mpair{x_0}{x_1} \qquad \textsf{y} \rightarrow \msingle{y_0}
+  \]
+
+  \pause
+  This allows for optimization:
+  \begin{itemize}
+    \item Low clearance variables cannot branch leading to fewer symbolic paths to follow.
+    \item This also means that we execute fewer queries to the SMT solver.
+  \end{itemize}
+  \centering
+  \textbf{Now we also have many possible combinations of paths!}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Example}
+  \begin{figure}[htp]
+  \centering
+  \begin{minted}{c}
+if (x > 0) {
+  y = 10;
+}
+  \end{minted}
+  \end{figure}
+  \begin{figure}
+    \begin{tikzpicture}
+      \node[scale=0.8] { $\rho = \{ \textsf{x} \rightarrow \mpair{x_0}{x_1}\ ;\ \textsf{y} \rightarrow \msingle{y_0} \} \;\;
+              \pi = \text{True}$ } [sibling distance = 4.5cm]
+        child [red] {
+          node [scale=0.8] { \vdots } edge from parent node [scale=0.8, left, brown] {\texttt{if-false-true}}}
+        child [blue] {
+          node [scale=0.8] {
+            $\rho = \{ \textsf{x} \rightarrow \mpair{x_0}{x_1}\ ;\ \textsf{y} \rightarrow \msingle{y_0} \} \;\;
+            \pi = \{ x_0 > 0\ \wedge\ x_1 \leq 0 \}$
+            }
+            child {node [scale=0.8] {
+              $\rho = \{ \textsf{x} \rightarrow \mpair{x_0}{x_1}\ ;\ \textsf{y} \rightarrow \mpair{10}{y_0} \} \;\;
+              \pi = \{ x_0 > 0\ \wedge\ x_1 \leq 0 \}$
+              } edge from parent node [scale=0.8, right, brown] {\texttt{assign}}}
+            edge from parent node [scale=0.8, right, brown] {\texttt{if-true-false}}};
+    \end{tikzpicture}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Soundness in Relational symbolic execution}
+  As we noted earlier, symbolic execution usually gives up on soundness and is usually used to find
+  vulnerabilities.
+
+  \vspace{1em}
+  In the framework of Relational symbolic execution what is done is to \textbf{manually set invariants}
+  to over approximate loops, and not even execute to certain bound.
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks]
+\frametitle{Bibliography}
+\bibliography{main}
+\end{frame}
+
+\end{document}

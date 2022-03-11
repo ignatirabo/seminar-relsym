@@ -1,0 +1,291 @@
+@article{Barthe2011,
+  abstract = {Information flow policies are confidentiality policies that control information leakage through program execution. A common way to enforce secure information flow is through information flow type systems. Although type systems are compositional and usually enjoy decidable type checking or inference, their extensibility is very poor: type systems need to be redefined and proved sound for each new variation of security policy and programming language for which secure information flow verification is desired. In contrast, program logics offer a general mechanism for enforcing a variety of safety policies, and for this reason are favoured in Proof Carrying Code, which is a promising security architecture for mobile code. However, the encoding of information flow policies in program logics is not straightforward because they refer to a relation between two program executions. The purpose of this paper is to investigate logical formulations of secure information flow based on the idea of self-composition, which reduces the problem of secure information flow of a program P to a safety property for a program derived from P by composing P with a renaming of itself. Self-composition enables the use of standard techniques for information flow policy verification, such as program logics and model checking, that are suitable in Proof Carrying Code infrastructures. We illustrate the applicability of self-composition in several settings, including different security policies such as non-interference and controlled forms of declassification, and programming languages including an imperative language with parallel composition, a non-deterministic language and, finally, a language with shared mutable data structures. {\textcopyright} 2011 Cambridge University Press.},
+  author = {Barthe, Gilles and D'Argenio, Pedro R. and Rezk, Tamara},
+  doi = {10.1017/S0960129511000193},
+  file = {:home/ignaciot/Downloads/Barthe-DArgenio-Rezk-Journal.pdf:pdf},
+  issn = {09601295},
+  journal = {Mathematical Structures in Computer Science},
+  month = {dec},
+  number = {6},
+  pages = {1207--1252},
+  title = {{Secure information flow by self-composition}},
+  url = {https://www.cambridge.org/core/product/identifier/S0960129511000193/type/journal_article},
+  volume = {21},
+  year = {2011}
+}
+
+@inproceedings{Barthe2004,
+  abstract = {Non-interference is a high-level security property that guarantees the absence of illicit information leakages through executing programs. More precisely, non-interference for a program assumes a separation between secret inputs and public inputs on the one hand, and secret outputs and public outputs on the other hand, and requires that the value of public outputs does not depend on the value of secret inputs. A common means to enforce non-interference is to use an information flow type system. However, such type systems are inherently imprecise, and reject many secure programs, even for simple programming languages. The purpose of this paper is to investigate logical formulations of non-interference that allow a more precise analysis of programs. It appears that such formulations are often sound and complete, and also amenable to interactive or automated verification techniques, such as theorem-proving or model-checking. We illustrate the applicability of our method in several scenarii, including a simple imperative language, a non-deterministic language, and finally a language with shared mutable data structures.},
+  author = {Gilles Barthe and Pedro R. D'Argenio and Tamara Rezk},
+  doi = {10.1109/csfw.2004.1310735},
+  issn = {10636900},
+  journal = {Proceedings of the Computer Security Foundations Workshop},
+  pages = {100-114},
+  title = {Secure information flow by self-composition},
+  volume = {17},
+  year = {2004},
+}
+
+@inproceedings{Clarkson2008,
+  abstract = {Properties, which have long been used for reasoning about systems, are sets of traces. Hyperproperties, introduced here, are sets of properties. Hyperproperties can express security policies, such as secure information flow, that properties cannot. Safety and liveness are generalized to hyperproperties, and every hyperproperty is shown to be the intersection of a safety hyperproperty and a liveness hyperproperty. A verification technique for safety hyperproperties is given and is shown to generalize prior techniques for verifying secure information flow. Refinement is shown to be valid for safety hyperproperties. A topological characterization of hyperproperties is given. {\textcopyright} 2008 IEEE.},
+  address = {Pittsburgh, PA, USA},
+  author = {Clarkson, Michael R. and Schneider, Fred B.},
+  booktitle = {Proceedings - IEEE Computer Security Foundations Symposium},
+  doi = {10.1109/CSF.2008.7},
+  isbn = {9780769531823},
+  issn = {19401434},
+  keywords = {hyperproperties},
+  mendeley-tags = {hyperproperties},
+  pages = {51--65},
+  publisher = {IEEE},
+  title = {{Hyperproperties}},
+  url = {http://ieeexplore.ieee.org/document/4556678/},
+  year = {2008}
+}
+
+@inproceedings{Assaf2017,
+  abstract = {We show how static analysis for secure information flow can be expressed and proved correct entirely within the framework of abstract interpretation. The key idea is to define a Galois connection that directly approximates the hyperproperty of interest. To enable use of such Galois connections, we introduce a fixpoint characterisation of hypercollecting semantics, i.e. a "set of sets" transformer. This makes it possible to systematically derive static analyses for hyperproperties entirely within the calculational framework of abstract interpretation.We evaluate this technique by deriving example static analyses. For qualitative information flow, we derive a dependence analysis similar to the logic of Amtoft and Banerjee (SAS'04) and the type system of Hunt and Sands (POPL'06). For quantitative information flow, we derive a novel cardinality analysis that bounds the leakage conveyed by a program instead of simply deciding whether it exists. This encompasses problems that are hypersafety but not k-safety. We put the framework to use and introduce variations that achieve precision rivalling the most recent and precise static analyses for information flow.},
+  address = {New York, NY, USA},
+  archivePrefix = {arXiv},
+  arxivId = {1608.01654},
+  author = {Assaf, Mounir and Naumann, David A. and Signoles, Julien and Totel, {\'{E}}ric and Tronel, Fr{\'{e}}d{\'{e}}ric},
+  booktitle = {Conference Record of the Annual ACM Symposium on Principles of Programming Languages},
+  doi = {10.1145/3009837.3009889},
+  eprint = {1608.01654},
+  file = {:home/ignaciot/Downloads/3009837.3009889.pdf:pdf},
+  isbn = {9781450346603},
+  issn = {07308566},
+  keywords = {Abstract interpretation,Hyperproperties,Information flow,Static analysis,abstract interpretation,dependences,hyperproperties,static analysis},
+  mendeley-tags = {abstract interpretation,dependences,hyperproperties,static analysis},
+  month = {jan},
+  pages = {874--887},
+  publisher = {ACM},
+  title = {{Hypercollecting semantics and its application to static analysis of information flow}},
+  url = {https://dl.acm.org/doi/10.1145/3009837.3009889},
+  year = {2017}
+}
+
+@article{DBLP:journals/jsac/SabelfeldM03,
+  author    = {Andrei Sabelfeld and
+               Andrew C. Myers},
+  title     = {Language-based information-flow security},
+  journal   = {{IEEE} J. Sel. Areas Commun.},
+  volume    = {21},
+  number    = {1},
+  pages     = {5--19},
+  year      = {2003},
+  url       = {https://doi.org/10.1109/JSAC.2002.806121},
+  doi       = {10.1109/JSAC.2002.806121},
+  timestamp = {Thu, 02 Apr 2020 08:40:58 +0200},
+  biburl    = {https://dblp.org/rec/journals/jsac/SabelfeldM03.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/sas/TerauchiA05,
+  author    = {Tachio Terauchi and
+               Alexander Aiken},
+  editor    = {Chris Hankin and
+               Igor Siveroni},
+  title     = {Secure Information Flow as a Safety Problem},
+  booktitle = {Static Analysis, 12th International Symposium, {SAS} 2005, London,
+               UK, September 7-9, 2005, Proceedings},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {3672},
+  pages     = {352--367},
+  publisher = {Springer},
+  year      = {2005},
+  url       = {https://doi.org/10.1007/11547662\_24},
+  doi       = {10.1007/11547662\_24},
+  timestamp = {Tue, 14 May 2019 10:00:52 +0200},
+  biburl    = {https://dblp.org/rec/conf/sas/TerauchiA05.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{DBLP:journals/cacm/CadarS13,
+  author    = {Cristian Cadar and
+               Koushik Sen},
+  title     = {Symbolic execution for software testing: three decades later},
+  journal   = {Commun. {ACM}},
+  volume    = {56},
+  number    = {2},
+  pages     = {82--90},
+  year      = {2013},
+  url       = {https://doi.org/10.1145/2408776.2408795},
+  doi       = {10.1145/2408776.2408795},
+  timestamp = {Tue, 06 Nov 2018 12:51:41 +0100},
+  biburl    = {https://dblp.org/rec/journals/cacm/CadarS13.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{Rice1953,
+  abstract = {In this paper we consider classes whose elements are re- cursively enumerable sets of non-negative integers. No discussion of recur- sively enumerable sets can avoid the use of such classes, so that it seems de- sirable to know some of their properties. We give our attention here to the properties of complete recursive enumerability and complete recursiveness (which may be intuitively interpreted as decidability). Perhaps our most interesting result (and the one which gives this paper its name) is the fact that no nontrivial class is completely recursive. We assume familiarity with a paper of Kleene [5](2), and with ideas which are well summarized in the first sections of a paper of Post [7].},
+  author = {H. G. Rice},
+  doi = {10.1090/s0002-9947-1953-0053041-6},
+  issn = {0002-9947},
+  issue = {2},
+  journal = {Transactions of the American Mathematical Society},
+  title = {Classes of recursively enumerable sets and their decision problems},
+  volume = {74},
+  year = {1953},
+}
+
+@article{Hunt2006,
+  abstract = {This article investigates formal properties of a family of semantically sound flow-sensitive type systems for tracking information flow in simple While programs. The family is indexed by the choice of flow lattice. By choosing the flow lattice to be the powerset of program variables, we obtain a system which, in a very strong sense, subsumes all other systems in the family (in particular, for each program, it provides a principal typing from which all others may be interred). This distinguished system is shown to be equivalent to, though more simply described than, Amtoft and Banerjee's Hoare-style independence logic (SAS'04). In general, some lattices are more expressive than others. Despite this, we show that no type system in the family can give better results for a given choice of lattice than the type system for that lattice itself. Finally, for any program typeable in one of these systems, we show how to construct an equivalent program which is typeable in a simple flow-insensitive system. We argue that this general approach could be useful in a proof-carrying-code setting. Copyright © 2006 ACM.},
+  author = {Sebastian Hunt and David Sands},
+  doi = {10.1145/1111320.1111045},
+  issn = {03621340},
+  issue = {1},
+  journal = {ACM SIGPLAN Notices},
+  title = {On flow-sensitive security types},
+  volume = {41},
+  year = {2006},
+}
+
+@article{Cousot1992,
+  abstract = {Predicting the binding mode of flexible polypeptides to proteins is an important task that falls outside the domain of applicability of most small molecule and protein−protein docking tools. Here, we test the small molecule flexible ligand docking program Glide on a set of 19 non-$\alpha$-helical peptides and systematically improve pose prediction accuracy by enhancing Glide sampling for flexible polypeptides. In addition, scoring of the poses was improved by post-processing with physics-based implicit solvent MM- GBSA calculations. Using the best RMSD among the top 10 scoring poses as a metric, the success rate (RMSD ≤ 2.0 {\AA} for the interface backbone atoms) increased from 21% with default Glide SP settings to 58% with the enhanced peptide sampling and scoring protocol in the case of redocking to the native protein structure. This approaches the accuracy of the recently developed Rosetta FlexPepDock method (63% success for these 19 peptides) while being over 100 times faster. Cross-docking was performed for a subset of cases where an unbound receptor structure was available, and in that case, 40% of peptides were docked successfully. We analyze the results and find that the optimized polypeptide protocol is most accurate for extended peptides of limited size and number of formal charges, defining a domain of applicability for this approach.},
+  archivePrefix = {arXiv},
+  arxivId = {arXiv:1011.1669v3},
+  author = {Cousot, Patrick and Cousot, Radhia},
+  doi = {10.1016/0743-1066(92)90030-7},
+  eprint = {arXiv:1011.1669v3},
+  file = {:home/ignatirabo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Cousot, Cousot - 1992 - Abstract interpretation and application to logic programs.pdf:pdf},
+  isbn = {9788578110796},
+  issn = {07431066},
+  journal = {The Journal of Logic Programming},
+  keywords = {abstract interpretation,icle,product,reduced product,static analysis},
+  mendeley-tags = {abstract interpretation,product,reduced product,static analysis},
+  month = {jul},
+  number = {2-3},
+  pages = {103--179},
+  pmid = {25246403},
+  title = {{Abstract interpretation and application to logic programs}},
+  url = {https://linkinghub.elsevier.com/retrieve/pii/0743106692900307},
+  volume = {13},
+  year = {1992}
+}
+
+@inproceedings{DBLP:conf/sp/GoguenM82a,
+  author    = {Joseph A. Goguen and
+               Jos{\'{e}} Meseguer},
+  title     = {Security Policies and Security Models},
+  booktitle = {1982 {IEEE} Symposium on Security and Privacy, Oakland, CA, USA, April
+               26-28, 1982},
+  pages     = {11--20},
+  publisher = {{IEEE} Computer Society},
+  year      = {1982},
+  url       = {https://doi.org/10.1109/SP.1982.10014},
+  doi       = {10.1109/SP.1982.10014},
+  timestamp = {Wed, 16 Oct 2019 14:14:51 +0200},
+  biburl    = {https://dblp.org/rec/conf/sp/GoguenM82a.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/popl/CousotC77,
+  author    = {Patrick Cousot and
+               Radhia Cousot},
+  editor    = {Robert M. Graham and
+               Michael A. Harrison and
+               Ravi Sethi},
+  title     = {Abstract Interpretation: {A} Unified Lattice Model for Static Analysis
+               of Programs by Construction or Approximation of Fixpoints},
+  booktitle = {Conference Record of the Fourth {ACM} Symposium on Principles of Programming
+               Languages, Los Angeles, California, USA, January 1977},
+  pages     = {238--252},
+  publisher = {{ACM}},
+  year      = {1977},
+  url       = {https://doi.org/10.1145/512950.512973},
+  doi       = {10.1145/512950.512973},
+  timestamp = {Tue, 06 Nov 2018 11:07:42 +0100},
+  biburl    = {https://dblp.org/rec/conf/popl/CousotC77.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{10.1145/390016.808445,
+  author = {Boyer, Robert S. and Elspas, Bernard and Levitt, Karl N.},
+  title = {SELECT—a Formal System for Testing and Debugging Programs by Symbolic Execution},
+  year = {1975},
+  issue_date = {June 1975},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  volume = {10},
+  number = {6},
+  issn = {0362-1340},
+  url = {https://doi.org/10.1145/390016.808445},
+  doi = {10.1145/390016.808445},
+  abstract = {SELECT is an experimental system for assisting in the formal systematic debugging of programs. It is intended to be a compromise between an automated program proving system and the current ad hoc debugging practice, and is similar to a system being developed by King et al. of IBM. SELECT systematically handles the paths of programs written in a LISP subset that includes arrays. For each execution path SELECT returns simplified conditions on input variables that cause the path to be executed, and simplified symbolic values for program variables at the path output. For conditions which form a system of linear equalities and inequalities SELECT will return input variable values that can serve as sample test data. The user can insert constraint conditions, at any point in the program including the output, in the form of symbolically executable assertions. These conditions can induce the system to select test data in user-specified regions. SELECT can also determine if the path is correct with respect to an output assertion. We present four examples demonstrating the various modes of system operation and their effectiveness in finding bugs. In some examples, SELECT was successful in automatically finding useful test data. In others, user interaction was required in the form of output assertions. SELECT appears to be a useful tool for rapidly revealing program errors, but for the future there is a need to expand its expressive and deductive power.},
+  journal = {SIGPLAN Not.},
+  month = {apr},
+  pages = {234–245},
+  numpages = {12},
+  keywords = {Program verification, Program debugging, Solution of systems of inequalities, Program testing, Symbolic execution, Test data generation}
+}
+
+@inproceedings{10.1145/800027.808445,
+  author = {Boyer, Robert S. and Elspas, Bernard and Levitt, Karl N.},
+  title = {SELECT—a Formal System for Testing and Debugging Programs by Symbolic Execution},
+  year = {1975},
+  isbn = {9781450373852},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/800027.808445},
+  doi = {10.1145/800027.808445},
+  abstract = {SELECT is an experimental system for assisting in the formal systematic debugging of programs. It is intended to be a compromise between an automated program proving system and the current ad hoc debugging practice, and is similar to a system being developed by King et al. of IBM. SELECT systematically handles the paths of programs written in a LISP subset that includes arrays. For each execution path SELECT returns simplified conditions on input variables that cause the path to be executed, and simplified symbolic values for program variables at the path output. For conditions which form a system of linear equalities and inequalities SELECT will return input variable values that can serve as sample test data. The user can insert constraint conditions, at any point in the program including the output, in the form of symbolically executable assertions. These conditions can induce the system to select test data in user-specified regions. SELECT can also determine if the path is correct with respect to an output assertion. We present four examples demonstrating the various modes of system operation and their effectiveness in finding bugs. In some examples, SELECT was successful in automatically finding useful test data. In others, user interaction was required in the form of output assertions. SELECT appears to be a useful tool for rapidly revealing program errors, but for the future there is a need to expand its expressive and deductive power.},
+  booktitle = {Proceedings of the International Conference on Reliable Software},
+  pages = {234–245},
+  numpages = {12},
+  keywords = {Program debugging, Solution of systems of inequalities, Program verification, Test data generation, Program testing, Symbolic execution},
+  location = {Los Angeles, California}
+}
+
+@inproceedings{DBLP:conf/sas/DelmasM19,
+  author    = {David Delmas and
+               Antoine Min{\'{e}}},
+  editor    = {Bor{-}Yuh Evan Chang},
+  title     = {Analysis of Software Patches Using Numerical Abstract Interpretation},
+  booktitle = {Static Analysis - 26th International Symposium, {SAS} 2019, Porto,
+               Portugal, October 8-11, 2019, Proceedings},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {11822},
+  pages     = {225--246},
+  publisher = {Springer},
+  year      = {2019},
+  url       = {https://doi.org/10.1007/978-3-030-32304-2\_12},
+  doi       = {10.1007/978-3-030-32304-2\_12},
+  timestamp = {Mon, 07 Oct 2019 12:38:12 +0200},
+  biburl    = {https://dblp.org/rec/conf/sas/DelmasM19.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{DBLP:journals/corr/abs-1711-08349,
+  author    = {Gian Pietro Farina and
+               Stephen Chong and
+               Marco Gaboardi},
+  title     = {Relational Symbolic Execution},
+  journal   = {CoRR},
+  volume    = {abs/1711.08349},
+  year      = {2017},
+  url       = {http://arxiv.org/abs/1711.08349},
+  eprinttype = {arXiv},
+  eprint    = {1711.08349},
+  timestamp = {Mon, 13 Aug 2018 16:48:21 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1711-08349.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{DBLP:journals/pacmpl/BodinGJS19,
+  author    = {Martin Bodin and
+               Philippa Gardner and
+               Thomas P. Jensen and
+               Alan Schmitt},
+  title     = {Skeletal semantics and their interpretations},
+  journal   = {Proc. {ACM} Program. Lang.},
+  volume    = {3},
+  number    = {{POPL}},
+  pages     = {44:1--44:31},
+  year      = {2019},
+  url       = {https://doi.org/10.1145/3290357},
+  doi       = {10.1145/3290357},
+  timestamp = {Wed, 17 Feb 2021 08:54:02 +0100},
+  biburl    = {https://dblp.org/rec/journals/pacmpl/BodinGJS19.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}

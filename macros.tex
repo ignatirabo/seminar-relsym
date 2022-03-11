@@ -1,0 +1,224 @@
+%%% Syntax %%%
+\newcommand{\stnd}{\ensuremath{\textsf{stnd}}}
+\newcommand{\implang}{\textsf{Imp}}
+\NewDocumentCommand{\stmtskip}{ o }{
+    \IfNoValueTF{#1}
+        {\ensuremath{\textbf{skip}}}
+        {\ensuremath{\textbf{skip}_#1}}
+}
+\NewDocumentCommand{\stmtassign}{ o m m }{
+    \IfNoValueTF{#1}
+        {\ensuremath{#2 := #3}}
+        {\ensuremath{#2 \overset{#1}{:=} #3}}
+}
+\NewDocumentCommand{\stmtwhile}{ o o o }{
+    % \IfNoValueTF{#1}
+    %     {\textbf{while}}
+    %     {\textbf{while} \; #1 \; \textbf{do} \; #2}
+    \IfNoValueTF{#3}
+        {\IfNoValueTF{#1}
+            {\ensuremath{\mathbf{while}}}
+            {\ensuremath{\mathbf{while} \; #1 \; \mathbf{do} \; #2}}
+        }
+        {\IfNoValueTF{#1}
+            {\ensuremath{\mathbf{while}_#1}}
+            {\ensuremath{\mathbf{while}_#3 \; #1 \; \mathbf{do} \; #2}}
+        }
+}
+\NewDocumentCommand{\stmtloop}{ o o o }{
+    % \IfNoValueTF{#1}
+    %     {\textbf{loop}}
+    %     {\textbf{loop} \; #1 \; \textbf{do} \; #2}
+    \IfNoValueTF{#3}
+        {\IfNoValueTF{#1}
+            {\ensuremath{\mathbf{loop}}}
+            {\ensuremath{\mathbf{loop} \; #1 \; \mathbf{do} \; #2}}
+        }
+        {\IfNoValueTF{#1}
+            {\ensuremath{\mathbf{loop}_#1}}
+            {\ensuremath{\mathbf{loop}_#3 \; #1 \; \mathbf{do} \; #2}}
+        }
+}
+% \NewDocumentCommand{\stmtif}{ o o o }{
+%     \IfNoValueTF{#1}
+%         {\textbf{if}}
+%         {\textbf{if} \; #1 \; \textbf{then} \; #2 \; \textbf{else} \; #3}
+% }
+\NewDocumentCommand{\stmtif}{ o o o o }{
+    \IfNoValueTF{#4}
+        {\IfNoValueTF{#1}
+            {\ensuremath{\mathbf{if}}}
+            {\ensuremath{\mathbf{if}\ #1\ \mathbf{then}\ #2\ \mathbf{else}\ #3}}
+        }
+        {\IfNoValueTF{#1}
+            {\ensuremath{\mathbf{if}_#4}}
+            {\ensuremath{\mathbf{if}_#4\ #1\ \mathbf{then}\ #2\ \mathbf{else}\ #3}}
+        }
+}
+\NewDocumentCommand{\stmtseq}{ o o m }{
+    \IfNoValueTF{#2}
+        {\IfNoValueTF{#1}
+            {\stmtskip ; #3}
+            {#1 ; #3}
+        }
+        {\IfNoValueTF{#1}
+            {\stmtskip \overset{#2}{;} #3}
+            {#1 \overset{#2}{;} #3}
+        }
+}
+\NewDocumentCommand{\wdepth}{ o }{
+    \IfNoValueTF{#1}
+        {\ensuremath{W_d}}
+        {\ensuremath{W_d(#1)}}
+}
+\NewDocumentCommand{\comp}{ o o }{
+    \IfNoValueTF{#1}
+        {\ensuremath{\triangleright}}
+        {\ensuremath{#1 \triangleright #2}}
+}
+
+%%% Semantics %%%
+\newcommand{\eval}{\vdash}
+\NewDocumentCommand{\sem}{ o }{
+    \IfNoValueTF{#1}
+        {\rightarrow}
+        {\xrightarrow{#1}}
+}
+\NewDocumentCommand{\semW}{ o }{
+    \IfNoValueTF{#1}
+        {\rightarrow_\normW}
+        {\xrightarrow{#1}_\normW}
+}
+\NewDocumentCommand{\semApp}{ o }{
+    \IfNoValueTF{#1}
+        {\rightarrow_\normApp}
+        {\xrightarrow{#1}_\normApp}
+}
+\NewDocumentCommand{\semDApp}{ o }{
+    \IfNoValueTF{#1}
+        {\rightarrow_{\normD\normApp}}
+        {\xrightarrow{#1}_{\normD\normApp}}
+}
+\NewDocumentCommand{\sse}{ o }{
+    \IfNoValueTF{#1}
+        {\rightharpoonup_s}
+        {\xrightharpoonup{#1}_s}
+}
+\newcommand{\sseSet}{\overset{S}{\rightharpoonup}_s}
+\NewDocumentCommand{\dse}{ o }{
+    \IfNoValueTF{#1}
+        {\rightharpoonup_d}
+        {\xrightharpoonup{#1}_d}
+}
+\newcommand{\dseSet}{\overset{S}{\rightharpoonup}_d}
+\newcommand{\apron}{\rightsquigarrow_\mathcal{A}}
+\newcommand{\prSem}{\rightsquigarrow^{\mathcal{S}\times\mathcal{A}}}
+
+%%% Notation %%%
+\newcommand{\msingle}[1]{\langle #1 \rangle}
+\newcommand{\mpair}[2]{\langle #1\ ; #2 \rangle}
+\newcommand{\Mem}{\normalfont \textsf{Mem}}
+\newcommand{\mem}{\mu}
+\newcommand{\Stmt}{\ensuremath{\mathbf{Stmt}}}
+\newcommand{\Expr}{\normalfont \mathbf{Expr}}
+\newcommand{\Var}{\normalfont \textsf{Var}}
+\newcommand{\Val}{\normalfont \textsf{Val}}
+\newcommand{\SVal}{\normalfont \textsf{SVal}}
+\newcommand{\Low}{\normalfont \textsf{Low}}
+\newcommand{\High}{\normalfont \textsf{High}}
+\newcommand{\true}{\textbf{tt}}
+\newcommand{\false}{\textbf{ff}}
+\newcommand{\Trc}{\normalfont \textsf{Trc}}
+\newcommand{\lproj}{\textsf{left}}
+\newcommand{\rproj}{\textsf{right}}
+\newcommand{\prog}{\textsf{P}}
+
+% Notation: non-interference
+\newcommand{\loweq}{=_{\textsf{L}}}
+\NewDocumentCommand{\niti}{ o }{
+    \IfNoValueTF{#1}
+        {\ensuremath{\mathcal{NI}^\mathit{T.I}}}
+        {\ensuremath{\mathcal{NI}^\mathit{T.I}_#1}}
+}
+\NewDocumentCommand{\nits}{ o }{
+    \IfNoValueTF{#1}
+        {\ensuremath{\mathcal{NI}^\mathit{T.S}}}
+        {\ensuremath{\mathcal{NI}^\mathit{T.S}_#1}}
+}
+
+% Notation: Non-standard
+\newcommand{\normW}{\ensuremath{\text{\normalfont W}}}
+\newcommand{\normApp}{\ensuremath{\text{\normalfont App}}}
+\newcommand{\normD}{\ensuremath{\text{\normalfont D}}}
+\newcommand{\normDM}{\ensuremath{\text{\normalfont DM}}}
+\newcommand{\memW}{\ensuremath{\mem_\normW}}
+\newcommand{\memApp}{\ensuremath{\xi}}
+\newcommand{\memDApp}{\ensuremath{\xi_\normD}}
+\newcommand{\MemW}{\ensuremath{\Mem_\normW}}
+\newcommand{\MemApp}{\ensuremath{\Mem_\normApp}}
+\newcommand{\MemDApp}{\ensuremath{\Mem_{\normD\normApp}}}
+\newcommand{\stndW}{\ensuremath{\textsf{stnd}_\normW}}
+\newcommand{\stndApp}{\ensuremath{\textsf{stnd}_\normApp}}
+\newcommand{\relstdW}{\ensuremath{\equiv^\natural}}
+\newcommand{\relWM}{\ensuremath{\in^\natural}}
+\newcommand{\relAppSS}{\sat_\normApp}
+\newcommand{\relDAppDS}{\sat_{\normD\normApp}}
+% \newcommand{\eqdef}[1]{\overset{#1}{=\joinrel=}}
+\newcommand{\eqlab}{\overset{\textbf{\footnotesize lab}}{=\joinrel=}}
+% \newcommand{\eqlab}{\eqdef}
+\newcommand{\neqlab}{\overset{\textbf{\footnotesize lab}}{=\joinrel\mathrel/\joinrel=}}
+% \newcommand{\neqlab}{\not\eqlab}
+
+% Notation: Dependences
+\newcommand{\Dep}{\text{\normalfont Dep}}
+\newcommand{\dep}{\ensuremath{\mathscr{D}}}
+\newcommand{\depsem}{\Rrightarrow}
+\newcommand{\depleq}{\sqsubseteq^\natural}
+\newcommand{\deple}{\sqsubset^\natural}
+\newcommand{\depsup}{\sqcup^\natural}
+\newcommand{\depeval}[1]{\llparenthesis #1 \rrparenthesis^\natural}
+\newcommand{\lagree}[3]{\mathcal{O}^#1 \depeval{#2} #3}
+\newcommand{\alphahs}{\alpha_\text{hs}}
+
+% Notation: Single-symbolic
+\newcommand{\Sstate}{\mathbf{K}}
+\newcommand{\SExpr}{\mathbf{SExpr}}
+\NewDocumentCommand{\sat}{ o }{
+    \IfNoValueTF{#1}
+        {\vDash}
+        {\vDash_{#1}}
+}
+\newcommand{\unsat}{\nvDash}
+\newcommand{\relates}{\sat}
+\newcommand{\smap}{\rho}
+\newcommand{\spath}{\pi}
+\newcommand{\lcount}{\text{\normalfont W}}
+\newcommand{\sstate}{\kappa}
+\newcommand{\seval}{\vdash_{\text{s}}}
+\newcommand{\maxite}{\textsc{Max-ite}}
+\newcommand{\wnew}{\textsf{w-new}}
+\newcommand{\wincr}{\textsf{w-incr}}
+\newcommand{\wdelete}{\textsf{w-delete}}
+\newcommand{\wcounter}{\textsf{w-counter}}
+\newcommand{\niter}[2]{\stackrel{\mathclap{\normalfont\mbox{#2}}}{#1}}
+
+% Notation: Double-symbolic
+\newcommand{\dstate}{\chi}
+\newcommand{\Dstate}{\mathbf{X}}
+\newcommand{\deval}{\vdash_{\text{d}}}
+\newcommand{\init}{\normalfont\textsf{init}}
+\newcommand{\eq}{\normalfont\textsf{eq}}
+\newcommand{\analysis}{\normalfont\textsf{analysis}}
+
+%%% Functions %%%
+\newcommand{\modif}{\normalfont \textsf{modif}}
+\newcommand{\fresh}{\normalfont \textsf{fresh}}
+\newcommand{\filter}{\normalfont\textsf{filter}}
+\newcommand{\new}{\normalfont \textsf{new}}
+\newcommand{\lab}{\ensuremath{\mathbf{lab}}}
+
+%%% Random %%%
+\newcommand{\down}[1]{\rotatebox[origin=c]{270}{\ensuremath{#1}}}
+\newcommand{\infersize}{\footnotesize}
+\newcommand{\llcurly}{\{\joinrel\mathrel|}
+\newcommand{\rrcurly}{\mathrel|\joinrel\}}
