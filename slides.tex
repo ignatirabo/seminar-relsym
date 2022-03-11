@@ -217,13 +217,23 @@ if (x > 0) {
 \end{frame}
 
 \begin{frame}
+  \frametitle{Vulnerabilities in Relational symbolic execution}
+  In the previous example, we are able to see that at least one relational trace is violating
+  noninterference.
+
+  \vspace{1em}
+  Thanks to the SMT solver, we are able to get a model of showing the vulnerability. We can also
+  reconstruct the path by looking at the symbolic path $\spath$.
+\end{frame}
+
+\begin{frame}
   \frametitle{Soundness in Relational symbolic execution}
-  As we noted earlier, symbolic execution usually gives up on soundness and is usually used to find
+  As we noted earlier, symbolic execution usually gives up on soundness and is used to find
   vulnerabilities.
 
   \vspace{1em}
   In the framework of Relational symbolic execution what is done is to \textbf{manually set invariants}
-  to over approximate loops, and not even execute to certain bound.
+  to over approximate loops, and skip the symbolic execution of loops.
 \end{frame}
 
 
